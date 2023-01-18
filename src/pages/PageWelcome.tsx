@@ -10,7 +10,7 @@ export const PageWelcome = () => {
 			<Helmet>
 				<title>{appTitle} - Welcome</title>
 			</Helmet>
-			<p>Welcome to this site.</p>
+			{/* <p>There are {books.length} books:</p> */}
 		</div>
 	);
 };
