@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 import axios from 'axios';
 import { IBook } from './interfaces';
+import * as tools from './tools';
 
 interface IAppContext {
 	appTitle: string;
@@ -11,6 +12,7 @@ interface IAppContext {
 	setPassword: (password: string) => void;
 	adminIsLoggedIn: boolean;
 	logoutAsAdmin: () => void;
+	handleDeleteFlashcard: (book: IBook) => void;
 }
 
 interface IAppProvider {
@@ -30,8 +32,26 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	useEffect(() => {
 		(async () => {
 			const response = await axios.get(`${backendUrl}/books`);
-			const _books: IBook[] = response.data;
+			let _books: IBook[] = response.data;
+			_books = tools.randomizeArray(_books);
 			setBooks(_books);
+		})();
+	}, []);
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const user = (
+					await axios.get(`${backendUrl}/get-current-user`, {
+						withCredentials: true,
+					})
+				).data;
+				if (user === 'admin') {
+					setAdminIsLoggedIn(true);
+				}
+			} catch (e: any) {
+				console.log('GENERAL ERROR');
+			}
 		})();
 	}, []);
 
@@ -67,7 +87,11 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		setPassword('');
 	};
 
-		const logoutAsAdmin = () => {
+	const handleDeleteFlashcard = (book: IBook) => {
+		setBooks([...books]);
+	};
+
+	const logoutAsAdmin = () => {
 		(async () => {
 			try {
 				setAdminIsLoggedIn(false);
@@ -77,7 +101,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 					})
 				).data;
 			} catch (e: any) {
-				console.log('general error');
+				console.log('GENERAL ERROR');
 			}
 		})();
 	};
@@ -91,7 +115,8 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				password,
 				setPassword,
 				adminIsLoggedIn,
-				logoutAsAdmin
+				logoutAsAdmin,
+				handleDeleteFlashcard,
 			}}
 		>
 			{children}

@@ -3,14 +3,15 @@ import { AppContext } from '../AppContext';
 import { Helmet } from 'react-helmet';
 
 export const PageBooks = () => {
-	const { appTitle, books, adminIsLoggedIn } = useContext(AppContext);
+	const { appTitle, books, adminIsLoggedIn, handleDeleteFlashcard } =
+		useContext(AppContext);
 
 	return (
 		<div className="pageBooks">
 			<Helmet>
 				<title>{appTitle} - Books</title>
 			</Helmet>
-			<p>There are {books.length} books:</p>
+			{books.length > 0 && <p>There are {books.length} books:</p>}
 
 			{adminIsLoggedIn && (
 				<div className="addBookArea">
@@ -21,7 +22,9 @@ export const PageBooks = () => {
 				{books.map((book) => {
 					return (
 						<div className="book" key={book._id}>
-							<img src={book.imageUrl} />
+							<div className="imageWrapper">
+								<img src={book.imageUrl} />
+							</div>
 							<div className="info">
 								<div className="title">
 									<a href={book.buyUrl}>{book.title}</a>
@@ -35,7 +38,13 @@ export const PageBooks = () => {
 								{adminIsLoggedIn && (
 									<div className="buttonArea">
 										<button>Edit</button>
-										<button>Delete</button>
+										<button
+											onClick={() =>
+												handleDeleteFlashcard(book)
+											}
+										>
+											Delete
+										</button>
 									</div>
 								)}
 							</div>
