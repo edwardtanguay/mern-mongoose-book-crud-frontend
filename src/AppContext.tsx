@@ -87,8 +87,26 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		setPassword('');
 	};
 
-	const handleDeleteFlashcard = (book: IBook) => {
-		setBooks([...books]);
+	const handleDeleteFlashcard = async (book: IBook) => {
+		try {
+			await axios.delete(`${backendUrl}/book/${book._id}`, {
+				withCredentials: true,
+			});
+			const _books = books.filter(
+				(m: IBook) => m._id !== book._id
+			);
+			setBooks(_books);
+		} catch (e: any) {
+			switch (e.code) {
+				case 'ERR_BAD_REQUEST':
+					console.log('BAD REQUREST');
+					break;
+				default:
+					console.log('GENERAL ERROR');
+					break;
+			}
+			setAdminIsLoggedIn(false);
+		}
 	};
 
 	const logoutAsAdmin = () => {
