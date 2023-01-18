@@ -6,9 +6,9 @@ export const PageBooks = () => {
 	const { appTitle, books } = useContext(AppContext);
 
 	return (
-		<div className="pageWelcome">
+		<div className="pageBooks">
 			<Helmet>
-				<title>{appTitle} - Welcome</title>
+				<title>{appTitle} - Books</title>
 			</Helmet>
 			<p>There are {books.length} books:</p>
 
@@ -23,6 +23,10 @@ export const PageBooks = () => {
 									{book.description}
 								</div>
 								<div className="language">{book.languageText}</div>
+								<div className="buttonArea">
+									<button>Edit</button>
+									<button>Delete</button>
+								</div>
 							</div>
 						</div>
 					);
