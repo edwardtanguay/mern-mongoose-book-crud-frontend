@@ -1,3 +1,4 @@
 - x finish all routes on backend
 - x finish security routes on backend with sessions, etc. 
-- .. create all html buttons
+- x create all html buttons
+- .. remove toastify

@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 import axios from 'axios';
 import { IBook } from './interfaces';
-import { toast } from 'react-toastify';
-
-const notify = (message: string) => toast(message);
 
 interface IAppContext {
 	appTitle: string;
@@ -60,7 +57,6 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		} catch (e: any) {
 			switch (e.code) {
 				case 'ERR_BAD_REQUEST':
-					notify('Your password was incorrect. Please try again.');
 					onFailure();
 					break;
 				default:
