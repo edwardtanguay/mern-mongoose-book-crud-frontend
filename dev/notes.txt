@@ -1,4 +1,7 @@
 - x finish all routes on backend
 - x finish security routes on backend with sessions, etc. 
 - x create all html buttons
-- .. remove toastify
+- x remove toastify
+- .. make login/logout pages work, buttons only when logged in
+
+

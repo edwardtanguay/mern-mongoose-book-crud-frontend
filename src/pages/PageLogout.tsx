@@ -1,7 +1,14 @@
+import { useContext, useEffect } from 'react';
+import { AppContext } from '../AppContext';
+import { useNavigate } from 'react-router-dom';
+
 export const PageLogout = () => {
-	return (
-		<div className="page pageLogout">
-			<p>This is the Logout page.</p>
-		</div>
-	);
+	const { logoutAsAdmin } = useContext(AppContext);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		logoutAsAdmin();
+		navigate('/');
+	}, []);
+	return (<></>);
 };

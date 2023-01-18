@@ -70,12 +70,12 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		const logoutAsAdmin = () => {
 		(async () => {
 			try {
+				setAdminIsLoggedIn(false);
 				const user = (
 					await axios.get(`${backendUrl}/logout`, {
 						withCredentials: true,
 					})
 				).data;
-				setAdminIsLoggedIn(false);
 			} catch (e: any) {
 				console.log('general error');
 			}
