@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '../AppContext';
 import { Helmet } from 'react-helmet';
 
-export const PageWelcome = () => {
+export const PageBooks = () => {
 	const { appTitle, books } = useContext(AppContext);
 
 	return (
