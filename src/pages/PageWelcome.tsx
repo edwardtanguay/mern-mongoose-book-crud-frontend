@@ -22,7 +22,7 @@ export const PageWelcome = () => {
 								<div className="description">
 									{book.description}
 								</div>
-								<div className="language">{book.language}</div>
+								<div className="language">{book.languageText}</div>
 							</div>
 						</div>
 					);

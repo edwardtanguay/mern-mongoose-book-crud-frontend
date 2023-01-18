@@ -4,6 +4,7 @@ export interface IBook {
 	description: string,
 	numberOfPages: number,
 	language: string,
+	languageText: string,
 	imageUrl: string,
 	buyUrl: string
 }
