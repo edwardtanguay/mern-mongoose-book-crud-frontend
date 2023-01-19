@@ -19,6 +19,7 @@ interface IAppContext {
 		value: string
 	) => void;
 	handleEditBook: (book: IBook) => void;
+	handleCancelEditBook: (book: IBook) => void;
 }
 
 interface IAppProvider {
@@ -73,6 +74,17 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 			}
 		})();
 	}, []);
+
+	const handleCancelEditBook = (book: IBook) => {
+		book.isBeingEdited = false;
+		//reset any values that were changed
+		book.originalEditFields = {
+			title: book.title,
+			description: book.description,
+			language: book.language,
+		};
+		setBooks([...books]);
+	};
 
 	const resetAllBooks = () => {
 		for (const book of books) {
@@ -176,6 +188,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				handleDeleteBook,
 				handleBookFieldChange,
 				handleEditBook,
+				handleCancelEditBook,
 			}}
 		>
 			{children}

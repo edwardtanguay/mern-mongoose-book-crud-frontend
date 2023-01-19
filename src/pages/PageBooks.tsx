@@ -10,6 +10,7 @@ export const PageBooks = () => {
 		handleDeleteBook,
 		handleBookFieldChange,
 		handleEditBook,
+		handleCancelEditBook,
 	} = useContext(AppContext);
 
 	return (
@@ -125,11 +126,19 @@ export const PageBooks = () => {
 														type="text"
 													/>
 												</div>
-												</div>
-												<div className="editFormButtons">
-													<button>Cancel</button>
-													<button>Save</button>
-												</div>
+											</div>
+											<div className="editFormButtons">
+												<button
+													onClick={() =>
+														handleCancelEditBook(
+															book
+														)
+													}
+												>
+													Cancel
+												</button>
+												<button>Save</button>
+											</div>
 										</form>
 									</div>
 								)}
