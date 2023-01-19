@@ -18,6 +18,7 @@ interface IAppContext {
 		book: IBook,
 		value: string
 	) => void;
+	handleEditBook: (book: IBook) => void;
 }
 
 interface IAppProvider {
@@ -135,6 +136,11 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		}
 	};
 
+	const handleEditBook = (book: IBook) => {
+		book.isBeingEdited = true;
+		setBooks([...books]);
+	};
+
 	const logoutAsAdmin = () => {
 		(async () => {
 			try {
@@ -162,6 +168,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				logoutAsAdmin,
 				handleDeleteBook,
 				handleBookFieldChange,
+				handleEditBook,
 			}}
 		>
 			{children}

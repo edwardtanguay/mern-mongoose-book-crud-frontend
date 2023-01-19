@@ -3,8 +3,14 @@ import { AppContext } from '../AppContext';
 import { Helmet } from 'react-helmet';
 
 export const PageBooks = () => {
-	const { appTitle, books, adminIsLoggedIn, handleDeleteBook, handleBookFieldChange } =
-		useContext(AppContext);
+	const {
+		appTitle,
+		books,
+		adminIsLoggedIn,
+		handleDeleteBook,
+		handleBookFieldChange,
+		handleEditBook,
+	} = useContext(AppContext);
 
 	return (
 		<div className="pageBooks">
@@ -41,12 +47,16 @@ export const PageBooks = () => {
 										</div>
 										{adminIsLoggedIn && (
 											<div className="buttonArea">
-												<button>Edit</button>
 												<button
 													onClick={() =>
-														handleDeleteBook(
-															book
-														)
+														handleEditBook(book)
+													}
+												>
+													Edit
+												</button>
+												<button
+													onClick={() =>
+														handleDeleteBook(book)
 													}
 												>
 													Delete
@@ -57,8 +67,8 @@ export const PageBooks = () => {
 								) : (
 									<div className="editArea">
 										<form>
-											<div className="row rowCategory">
-												<label>Category</label>
+											<div className="row">
+												<label>Title</label>
 												<div className="control">
 													<input
 														value={
