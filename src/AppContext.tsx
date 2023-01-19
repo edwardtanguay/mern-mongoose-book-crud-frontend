@@ -54,7 +54,6 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				};
 				_books.push(_book);
 			});
-			_books = tools.randomizeArray(_books);
 			setBooks(_books);
 		})();
 	}, []);
@@ -133,12 +132,9 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 			await axios.put(
 				`${backendUrl}/book/${book._id}`,
 				{
-					book: {
-						title: book.originalEditFields.title,
-						description: book.originalEditFields.description,
-						language: book.originalEditFields.language,
-						languageText: tools.capitalizeFirstLetter(book.originalEditFields.language)
-					},
+					title: book.originalEditFields.title,
+					description: book.originalEditFields.description,
+					language: book.originalEditFields.language,
 				},
 				{
 					withCredentials: true,
@@ -147,6 +143,10 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 			// if it saved in backend, then update in frontend
 			book.title = book.originalEditFields.title;
 			book.description = book.originalEditFields.description;
+			book.language = book.originalEditFields.language;
+			book.languageText = tools.capitalizeFirstLetter(
+				book.originalEditFields.language
+			);
 			setBooks([...books]);
 			book.isBeingEdited = false;
 		} catch (e: any) {

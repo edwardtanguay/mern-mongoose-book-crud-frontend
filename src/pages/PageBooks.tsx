@@ -50,6 +50,7 @@ export const PageBooks = () => {
 										{adminIsLoggedIn && (
 											<div className="buttonArea">
 												<button
+													type="button"
 													onClick={() =>
 														handleDeleteBook(book)
 													}
@@ -57,6 +58,7 @@ export const PageBooks = () => {
 													Delete
 												</button>
 												<button
+													type="button"
 													onClick={() =>
 														handleEditBook(book)
 													}
@@ -130,6 +132,7 @@ export const PageBooks = () => {
 											</div>
 											<div className="editFormButtons">
 												<button
+													type="button"
 													onClick={() =>
 														handleCancelEditBook(
 															book
@@ -139,6 +142,7 @@ export const PageBooks = () => {
 													Cancel
 												</button>
 												<button
+													type="button"
 													onClick={() =>
 														handleSaveEditBook(book)
 													}
