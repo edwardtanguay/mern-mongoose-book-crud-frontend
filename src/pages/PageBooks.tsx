@@ -106,6 +106,26 @@ export const PageBooks = () => {
 													/>
 												</div>
 											</div>
+											<div className="row">
+												<label>Language</label>
+												<div className="control">
+													<input
+														value={
+															book
+																.originalEditFields
+																.language
+														}
+														onChange={(e) =>
+															handleBookFieldChange(
+																'language',
+																book,
+																e.target.value
+															)
+														}
+														type="text"
+													/>
+												</div>
+											</div>
 										</form>
 									</div>
 								)}

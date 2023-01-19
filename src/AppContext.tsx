@@ -74,6 +74,13 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		})();
 	}, []);
 
+	const resetAllBooks = () => {
+		for (const book of books) {
+			book.isBeingEdited = false;
+		}
+		setBooks([...books]);
+	};
+
 	const loginAsAdmin = async (
 		onSuccess: () => void,
 		onFailure: () => void
@@ -92,6 +99,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				}
 			);
 			setAdminIsLoggedIn(true);
+			resetAllBooks();
 			onSuccess();
 		} catch (e: any) {
 			switch (e.code) {
@@ -144,12 +152,11 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	const logoutAsAdmin = () => {
 		(async () => {
 			try {
+				resetAllBooks();
 				setAdminIsLoggedIn(false);
-				const user = (
-					await axios.get(`${backendUrl}/logout`, {
-						withCredentials: true,
-					})
-				).data;
+				await axios.get(`${backendUrl}/logout`, {
+					withCredentials: true,
+				});
 			} catch (e: any) {
 				console.log('GENERAL ERROR');
 			}
