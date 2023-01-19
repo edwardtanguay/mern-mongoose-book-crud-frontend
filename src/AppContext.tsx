@@ -136,6 +136,8 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 					book: {
 						title: book.originalEditFields.title,
 						description: book.originalEditFields.description,
+						language: book.originalEditFields.language,
+						languageText: tools.capitalizeFirstLetter(book.originalEditFields.language)
 					},
 				},
 				{

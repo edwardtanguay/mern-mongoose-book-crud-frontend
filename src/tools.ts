@@ -20,3 +20,7 @@ export const sortArrayOfObjects = (objs: any, prop: string, order: string = 'asc
 	}
 	return objs.slice(0).sort((a: any, b: any) => (a[prop] > b[prop]) ? compare1 : ((b[prop] > a[prop]) ? compare2 : 0))
 }
+
+export const capitalizeFirstLetter = (text: string) => {
+	return text.charAt(0).toUpperCase() + text.slice(1);
+}
