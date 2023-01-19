@@ -59,7 +59,6 @@ SESSION_SECRET = RANDOMSTRING
 ADMIN_PASSWORD = ADMINPASSWORD
 FRONTEND_URL = http://localhost:5002
 ```
-
 ### start the backend
 
 - `npm run dev`
