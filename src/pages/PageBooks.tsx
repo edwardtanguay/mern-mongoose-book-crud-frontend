@@ -11,6 +11,7 @@ export const PageBooks = () => {
 		handleBookFieldChange,
 		handleEditBook,
 		handleCancelEditBook,
+		handleSaveEditBook,
 	} = useContext(AppContext);
 
 	return (
@@ -20,7 +21,7 @@ export const PageBooks = () => {
 			</Helmet>
 			{books.length > 0 && <p>There are {books.length} books:</p>}
 
-			{adminIsLoggedIn && (
+			{adminIsLoggedIn && false && (
 				<div className="addBookArea">
 					<button>Add Book</button>
 				</div>
@@ -50,17 +51,17 @@ export const PageBooks = () => {
 											<div className="buttonArea">
 												<button
 													onClick={() =>
-														handleEditBook(book)
-													}
-												>
-													Edit
-												</button>
-												<button
-													onClick={() =>
 														handleDeleteBook(book)
 													}
 												>
 													Delete
+												</button>
+												<button
+													onClick={() =>
+														handleEditBook(book)
+													}
+												>
+													Edit
 												</button>
 											</div>
 										)}
@@ -137,7 +138,13 @@ export const PageBooks = () => {
 												>
 													Cancel
 												</button>
-												<button>Save</button>
+												<button
+													onClick={() =>
+														handleSaveEditBook(book)
+													}
+												>
+													Save
+												</button>
 											</div>
 										</form>
 									</div>

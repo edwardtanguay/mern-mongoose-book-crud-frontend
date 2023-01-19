@@ -20,6 +20,7 @@ interface IAppContext {
 	) => void;
 	handleEditBook: (book: IBook) => void;
 	handleCancelEditBook: (book: IBook) => void;
+	handleSaveEditBook: (book: IBook) => void;
 }
 
 interface IAppProvider {
@@ -126,6 +127,39 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		setPassword('');
 	};
 
+	const handleSaveEditBook = async (book: IBook) => {
+		try {
+			// save in backend
+			await axios.put(
+				`${backendUrl}/book/${book._id}`,
+				{
+					book: {
+						title: book.originalEditFields.title,
+						description: book.originalEditFields.description,
+					},
+				},
+				{
+					withCredentials: true,
+				}
+			);
+			// if it saved in backend, then update in frontend
+			book.title = book.originalEditFields.title;
+			book.description = book.originalEditFields.description;
+			setBooks([...books]);
+			book.isBeingEdited = false;
+		} catch (e: any) {
+			switch (e.code) {
+				case 'ERR_BAD_REQUEST':
+					console.log('BAD REQUEST');
+					break;
+				default:
+					console.log('GENERAL ERROR');
+					break;
+			}
+			setAdminIsLoggedIn(false);
+		}
+	};
+
 	const handleBookFieldChange = (
 		fieldIdCode: string,
 		book: IBook,
@@ -189,6 +223,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				handleBookFieldChange,
 				handleEditBook,
 				handleCancelEditBook,
+				handleSaveEditBook,
 			}}
 		>
 			{children}
