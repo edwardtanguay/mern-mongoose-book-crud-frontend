@@ -3,7 +3,8 @@
 - x create all html buttons
 - x remove toastify
 - x make login/logout pages work, buttons only when logged in
-- .. stay logged in
-- .. delete button
+- x stay logged in
+- x delete button
+- .. edit button
 
 

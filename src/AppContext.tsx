@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 import axios from 'axios';
-import { IBook } from './interfaces';
+import { IBook, IOriginalEditFields } from './interfaces';
 import * as tools from './tools';
 
 interface IAppContext {
@@ -12,7 +12,12 @@ interface IAppContext {
 	setPassword: (password: string) => void;
 	adminIsLoggedIn: boolean;
 	logoutAsAdmin: () => void;
-	handleDeleteFlashcard: (book: IBook) => void;
+	handleDeleteBook: (book: IBook) => void;
+	handleBookFieldChange: (
+		fieldIdCode: string,
+		book: IBook,
+		value: string
+	) => void;
 }
 
 interface IAppProvider {
@@ -31,8 +36,21 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 
 	useEffect(() => {
 		(async () => {
+			let _books: IBook[] = [];
 			const response = await axios.get(`${backendUrl}/books`);
-			let _books: IBook[] = response.data;
+			let rawBooks: IBook[] = response.data;
+			rawBooks.forEach((rawBook: any) => {
+				const _book: IBook = {
+					...rawBook,
+					isBeingEdited: false,
+					originalEditFields: {
+						title: rawBook.title,
+						description: rawBook.description,
+						language: rawBook.language,
+					},
+				};
+				_books.push(_book);
+			});
 			_books = tools.randomizeArray(_books);
 			setBooks(_books);
 		})();
@@ -87,14 +105,22 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		setPassword('');
 	};
 
-	const handleDeleteFlashcard = async (book: IBook) => {
+	const handleBookFieldChange = (
+		fieldIdCode: string,
+		book: IBook,
+		value: string
+	) => {
+		book.originalEditFields[fieldIdCode as keyof IOriginalEditFields] =
+			value;
+		setBooks([...books]);
+	};
+
+	const handleDeleteBook = async (book: IBook) => {
 		try {
 			await axios.delete(`${backendUrl}/book/${book._id}`, {
 				withCredentials: true,
 			});
-			const _books = books.filter(
-				(m: IBook) => m._id !== book._id
-			);
+			const _books = books.filter((m: IBook) => m._id !== book._id);
 			setBooks(_books);
 		} catch (e: any) {
 			switch (e.code) {
@@ -134,7 +160,8 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				setPassword,
 				adminIsLoggedIn,
 				logoutAsAdmin,
-				handleDeleteFlashcard,
+				handleDeleteBook,
+				handleBookFieldChange,
 			}}
 		>
 			{children}

@@ -1,3 +1,9 @@
+export interface IOriginalEditFields {
+	title: string,
+	description: string,
+	language: string
+}
+
 export interface IBook {
 	_id: string,
 	title: string,
@@ -6,5 +12,7 @@ export interface IBook {
 	language: string,
 	languageText: string,
 	imageUrl: string,
-	buyUrl: string
+	buyUrl: string,
+	isBeingEdited: boolean
+	originalEditFields: IOriginalEditFields
 }

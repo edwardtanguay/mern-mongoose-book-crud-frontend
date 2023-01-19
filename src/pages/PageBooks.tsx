@@ -3,7 +3,7 @@ import { AppContext } from '../AppContext';
 import { Helmet } from 'react-helmet';
 
 export const PageBooks = () => {
-	const { appTitle, books, adminIsLoggedIn, handleDeleteFlashcard } =
+	const { appTitle, books, adminIsLoggedIn, handleDeleteBook, handleBookFieldChange } =
 		useContext(AppContext);
 
 	return (
@@ -26,25 +26,58 @@ export const PageBooks = () => {
 								<img src={book.imageUrl} />
 							</div>
 							<div className="info">
-								<div className="title">
-									<a href={book.buyUrl}>{book.title}</a>
-								</div>
-								<div className="description">
-									{book.description}
-								</div>
-								<div className="language">
-									{book.languageText}
-								</div>
-								{adminIsLoggedIn && (
-									<div className="buttonArea">
-										<button>Edit</button>
-										<button
-											onClick={() =>
-												handleDeleteFlashcard(book)
-											}
-										>
-											Delete
-										</button>
+								{!book.isBeingEdited ? (
+									<div className="showDataArea">
+										<div className="title">
+											<a href={book.buyUrl}>
+												{book.title}
+											</a>
+										</div>
+										<div className="description">
+											{book.description}
+										</div>
+										<div className="language">
+											{book.languageText}
+										</div>
+										{adminIsLoggedIn && (
+											<div className="buttonArea">
+												<button>Edit</button>
+												<button
+													onClick={() =>
+														handleDeleteBook(
+															book
+														)
+													}
+												>
+													Delete
+												</button>
+											</div>
+										)}
+									</div>
+								) : (
+									<div className="editArea">
+										<form>
+											<div className="row rowCategory">
+												<label>Category</label>
+												<div className="control">
+													<input
+														value={
+															book
+																.originalEditFields
+																.title
+														}
+														onChange={(e) =>
+															handleBookFieldChange(
+																'title',
+																book,
+																e.target.value
+															)
+														}
+														type="text"
+													/>
+												</div>
+											</div>
+										</form>
 									</div>
 								)}
 							</div>
