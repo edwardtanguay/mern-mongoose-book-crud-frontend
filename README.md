@@ -11,6 +11,7 @@ This is the frontend to a two-repository project that allows a user to view book
 - delete the repository: `rm -rf .git`
 - create a new repository: `git init -b main`
 - install node modules: `npm i`
+- open project in editor e.g. `code .` (Visual Studio Code)
 
 ## create .env file
 
