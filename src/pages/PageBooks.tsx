@@ -125,7 +125,11 @@ export const PageBooks = () => {
 														type="text"
 													/>
 												</div>
-											</div>
+												</div>
+												<div className="editFormButtons">
+													<button>Cancel</button>
+													<button>Save</button>
+												</div>
 										</form>
 									</div>
 								)}
