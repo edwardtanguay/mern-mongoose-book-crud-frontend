@@ -27,7 +27,7 @@ interface IAppProvider {
 	children: React.ReactNode;
 }
 
-const backendUrl = 'http://localhost:3610';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 

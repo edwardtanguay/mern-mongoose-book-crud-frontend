@@ -1,12 +1,3 @@
-- x finish all routes on backend
-- x finish security routes on backend with sessions, etc. 
-- x create all html buttons
-- x remove toastify
-- x make login/logout pages work, buttons only when logged in
-- x stay logged in
-- x delete button
-- x edit button
-- .. clear
-- .. save
+- .. make install instructions on readmes
 
 
