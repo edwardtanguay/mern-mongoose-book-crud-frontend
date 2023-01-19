@@ -87,6 +87,25 @@ export const PageBooks = () => {
 													/>
 												</div>
 											</div>
+											<div className="row">
+												<label>Description</label>
+												<div className="control">
+													<textarea
+														value={
+															book
+																.originalEditFields
+																.description
+														}
+														onChange={(e) =>
+															handleBookFieldChange(
+																'description',
+																book,
+																e.target.value
+															)
+														}
+													/>
+												</div>
+											</div>
 										</form>
 									</div>
 								)}

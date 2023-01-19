@@ -2,7 +2,7 @@ $header_color: rgb(194, 164, 107);
 $flashcard_background_front: #222;
 $flashcard_background_back: #111;
 $flashcard_width: 35rem;
-$row_width_full: 27.5rem;
+$row_width_full: 24.5rem;
 $row_width_short: 8rem;
 
 body {
@@ -127,10 +127,9 @@ body {
 					}
 
 					.editArea {
-						margin-top: 1rem;
 						background: $flashcard_background_front;
 						max-width: $flashcard_width - 1.6rem;
-						padding: 1.2rem .7rem .9rem .9rem;
+						padding: 1.2rem .7rem .9rem .5rem;
 
 						.row {
 							display: flex;
@@ -142,7 +141,7 @@ body {
 									content: ': ';
 								}
 
-								width: 4.3rem;
+								width: 5.3rem;
 							}
 
 							div.control {
@@ -150,6 +149,11 @@ body {
 
 								input {
 									width: 35rem;
+									font-size: .9rem;
+								}
+								textarea {
+									width: 35rem;
+									height: 4rem;
 									font-size: .9rem;
 								}
 							}
