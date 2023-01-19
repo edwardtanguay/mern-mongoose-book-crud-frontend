@@ -63,6 +63,8 @@ FRONTEND_URL = http://localhost:5002
 
 - `npm run dev`
 
+---
+
 ## INSTALL FRONTEND
 
 - enter your project directory
