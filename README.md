@@ -2,6 +2,9 @@
 
 This is the frontend to a two-repository project that allows a user to view books, then log in to delete and edit them. You have to install the backend and frontend.
 
+- [backend repository](https://github.com/edwardtanguay/mern-mongoose-book-crud-backend)
+- [frontend repository](https://github.com/edwardtanguay/mern-mongoose-book-crud-frontend)
+
 ## clone this repository
 
 - clone this repository into project directory, e.g. `mern-crud-frontend`
