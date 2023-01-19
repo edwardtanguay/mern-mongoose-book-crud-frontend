@@ -6,11 +6,11 @@ This is the frontend to a two-repository project that allows a user to view book
 - [frontend repository](https://github.com/edwardtanguay/mern-mongoose-book-crud-frontend)
 
 
-## INSTALL ONE PROJECT DIRECTORY FOR BOTH BACKEND AND FRONTEND
+## CREATE ONE PROJECT FOR BOTH BACKEND AND FRONTEND
 
 - open your terminal
 - create a directory for this project, e.g.
-	- `mkdir site001`
+  - `mkdir site001`
 
 ## INSTALL BACKEND
 
