@@ -58,8 +58,7 @@ This is the frontend to a two-repository project that allows a user to view book
 	SESSION_SECRET = RANDOMSTRING
 	ADMIN_PASSWORD = ADMINPASSWORD
 	FRONTEND_URL = http://localhost:5002
-	```
-### start the backend
+	```### start the backend
 
 - `npm run dev`
 
