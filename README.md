@@ -59,10 +59,10 @@ This is the frontend to a two-repository project that allows a user to view book
 	ADMIN_PASSWORD = ADMINPASSWORD
 	FRONTEND_URL = http://localhost:5002
 	```
+	
 ### start the backend
 
 - `npm run dev`
-
 
 ## INSTALL FRONTEND
 
@@ -94,6 +94,7 @@ This is the frontend to a two-repository project that allows a user to view book
 	``` text
 	VITE_BACKEND_URL = http://localhost:5001
 	```
+	
 ### start the frontend
 
 - `npm run dev`
