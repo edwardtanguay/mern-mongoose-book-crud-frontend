@@ -50,7 +50,7 @@ This is the frontend to a two-repository project that allows a user to view book
 	- ADMINPASSWORD
 - you can also change the backend/frontend ports if you need to
 
-	``` text
+	```
 	APP_NAME = Book Site API
 	SECONDS_TILL_SESSION_TIMEOUT = 3600 
 	PORT = 5001
@@ -58,7 +58,8 @@ This is the frontend to a two-repository project that allows a user to view book
 	SESSION_SECRET = RANDOMSTRING
 	ADMIN_PASSWORD = ADMINPASSWORD
 	FRONTEND_URL = http://localhost:5002
-	```### start the backend
+	```
+### start the backend
 
 - `npm run dev`
 
@@ -89,9 +90,9 @@ This is the frontend to a two-repository project that allows a user to view book
 - copy in the following content
 - make sure the backend URL is correct, e.g. if you changed the port number of your backend, then change it here as well
 
-``` text
-VITE_BACKEND_URL = http://localhost:5001
-```
+	``` text
+	VITE_BACKEND_URL = http://localhost:5001
+	```
 ### start the frontend
 
 - `npm run dev`
